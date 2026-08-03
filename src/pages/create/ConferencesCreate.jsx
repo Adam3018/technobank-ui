@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { conferences } from '../api'
+import { conferences } from '../../api'
 
 export default function Conferences() {
   const [items, setItems] = useState([])

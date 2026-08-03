@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { emailTemplates } from '../api'
+import { emailTemplates } from '../../api'
 
 export default function EmailTemplates(){
   const [items,setItems]=useState([])

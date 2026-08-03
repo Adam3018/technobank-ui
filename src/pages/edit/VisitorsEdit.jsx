@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react'
-import { visitors } from '../api'
+import { useParams, useNavigate } from 'react-router-dom'
+import { visitors } from '../../api'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
-import ListGroup from 'react-bootstrap/ListGroup'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
-export default function Visitors() {
-  const [items, setItems] = useState([])
+export default function VisitorsEdit() {
+  const navigate = useNavigate()
+  const { id } = useParams()
+
+  const [items, setItems] = useState(null)
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [email, setEmail] = useState('')
@@ -16,51 +19,46 @@ export default function Visitors() {
   const [clearanceLevel, setClearanceLevel] = useState('')
   const [phone, setPhone] = useState('')
   const [notes, setNotes] = useState('')
-  const [isActive, setIsActive] = useState(true)
 
   async function load() {
-    setItems(await visitors.list())
+    const data = await visitors.get(id)
+    setItems(data)
+    setFirstName(data.first_name || '')
+    setLastName(data.last_name || '')
+    setEmail(data.email || '')
+    setCompany(data.company || '')
+    setPosition(data.position || '')
+    setClearanceLevel(data.clearance_level || '')
+    setPhone(data.phone || '')
+    setNotes(data.notes || '')
   }
 
   useEffect(() => {
     load()
   }, [])
 
-  async function create(e) {
-    e.preventDefault()
-    await visitors.create({
-      first_name: firstName,
-      last_name: lastName,
-      email,
-      company: company || undefined,
-      position: position || undefined,
-      clearance_level: clearanceLevel,
-      phone: phone || undefined,
-      notes: notes || undefined,
-      is_active: isActive,
-    })
-    setFirstName('')
-    setLastName('')
-    setEmail('')
-    setCompany('')
-    setPosition('')
-    setClearanceLevel('')
-    setPhone('')
-    setNotes('')
-    setIsActive(true)
-    load()
-  }
-
-  async function remove(id) {
-    if (!confirm('Delete visitor?')) return
-    await visitors.remove(id)
-    load()
-  }
-
   return (
     <div>
-      <h2 className="mb-4">Visitors</h2>
-      <Form onSubmit={create} className="mb-4">
+      <h2 className="mb-4">Edit Visitor</h2>
+      <Form
+        className="mb-4"
+        onSubmit={async (e) => {
+          e.preventDefault()
+          if (!confirm("Are you sure you want to save changes?")) return
+          await visitors.update(id, {
+            first_name: firstName,
+            last_name: lastName,
+            email,
+            company,
+            position,
+            clearance_level: clearanceLevel,
+            phone,
+            notes
+          })
+          navigate('/visitors')
+          alert('Visitor updated successfully!')
+        }}
+      >
         <Row>
           <Col md={3}>
             <Form.Group className="mb-3">
@@ -152,8 +150,10 @@ export default function Visitors() {
                   Select clearance
                 </option>
                 <option value="visitor">Visitor</option>
+                <option value="vip">VIP</option>
                 <option value="staff">Staff</option>
                 <option value="admin">Admin</option>
+                <option value="presenter">Presenter</option>
               </Form.Select>
             </Form.Group>
           </Col>
@@ -180,47 +180,18 @@ export default function Visitors() {
             <Button
               variant="primary"
               type="submit"
-              disabled={!firstName || !lastName || !email || !clearanceLevel}
+            // onClick={(e) => {
+            //   if (!confirm("Are you sure you want to save changes?")) {
+            //     e.preventDefault();
+            //   }
+            // }}
             >
-              Create
+              Save Changes
             </Button>
           </Col>
         </Row>
       </Form>
 
-      <h3>Visitors List</h3>
-      <ListGroup>
-        {items.map((v) => (
-          <ListGroup.Item
-            key={v.id}
-            className="d-flex justify-content-between align-items-center"
-          >
-            <div>
-              <div className="fw-bold fs-5">
-                {v.first_name} {v.last_name}
-              </div>
-
-              <div className="text-muted">
-                <strong>Email:</strong> {v.email}
-              </div>
-
-              {v.company && (
-                <div className="text-muted">
-                  <strong>Company:</strong> {v.company}
-                </div>
-              )}
-            </div>
-
-            <Button
-              variant="outline-danger"
-              size="sm"
-              onClick={() => remove(v.id)}
-            >
-              Delete
-            </Button>
-          </ListGroup.Item>
-        ))}
-      </ListGroup>
     </div>
   )
 }
