@@ -1,7 +1,7 @@
 import React from 'react'
 import { Layout as RaLayout } from 'react-admin'
-import AppBar from './AppBar'
-import CustomMenu from './Menu'
+import AppBar from './customComponents/AppBar'
+import CustomMenu from './customComponents/Menu'
 
 export default function Layout(props) {
     return (
@@ -9,6 +9,7 @@ export default function Layout(props) {
             {...props}
             appBar={AppBar}
             menu={CustomMenu}
+            
         />
     )
 }

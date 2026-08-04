@@ -8,7 +8,7 @@ import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import dataProvider from './dataProvider'
 import Layout from './Layout'
 
-import VisitorsList from './pages/list/VisitorsList'
+import {VisitorsList} from './pages/list/VisitorsList'
 import VisitorsCreate from './pages/create/VisitorsCreate'
 import VisitorsEdit from './pages/edit/VisitorsEdit'
 

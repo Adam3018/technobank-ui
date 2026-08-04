@@ -20,12 +20,27 @@ async function request(path, options = {}) {
 }
 
 const dataProvider = {
-  getList: async (resource) => {
-    const data = await request(`/${resource}`);
+  getList: async (resource, params) => {
+    const { page, perPage } = params.pagination;
+    const { field, order } = params.sort;
+
+    const query = new URLSearchParams({
+      page,
+      perPage,
+      sort: field,
+      order,
+    });
+
+    const res = await fetch(`${BASE}/${resource}?${query}`);
+
+    const data = await res.json();
+
+    const contentRange = res.headers.get("Content-Range");
+    const total = Number(contentRange.split("/")[1]);
 
     return {
       data,
-      total: data.length,
+      total,
     };
   },
 

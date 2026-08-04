@@ -5,15 +5,19 @@ import {
   Datagrid,
   TextField,
   EmailField,
-  BooleanField,
   EditButton,
-  DeleteButton,
+  DeleteWithConfirmButton,
 } from 'react-admin'
+import { ListPaginationWithActions } from '../../customComponents/ListPaginationWithActions';
 import { clearanceChoices } from '../../utils/clearanceChoices'
 
-export default function VisitorsList() {
+export const VisitorsList = (props) => {
   return (
-    <List>
+    <List
+      {...props}
+      actions={false} // Hides top action bar (Create/Export)
+      pagination={<ListPaginationWithActions />} // Places actions in bottom bar
+    >
       <Datagrid rowClick="edit">
         <TextField source="id" />
         <TextField source="first_name" label="First Name" />
@@ -23,9 +27,8 @@ export default function VisitorsList() {
         <TextField source="position" />
         <TextField source="clearance_level" label="Clearance" choices={clearanceChoices} />
         <TextField source="phone" />
-        <BooleanField source="is_active" label="Active" />
         <EditButton />
-        <DeleteButton />
+        <DeleteWithConfirmButton  />
       </Datagrid>
     </List>
   )
