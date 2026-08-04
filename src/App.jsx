@@ -4,6 +4,7 @@ import { Admin, Resource } from 'react-admin'
 import EventIcon from '@mui/icons-material/Event'
 import PeopleIcon from '@mui/icons-material/People'
 import EmailIcon from '@mui/icons-material/Email'
+import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import dataProvider from './dataProvider'
 import Layout from './Layout'
 
