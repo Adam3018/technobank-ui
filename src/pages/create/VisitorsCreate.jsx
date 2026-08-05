@@ -4,15 +4,15 @@ import {
   SimpleForm,
   TextInput,
   SelectInput,
-  BooleanInput,
   required,
   email,
 } from 'react-admin'
 import { clearanceChoices } from '../../utils/clearanceChoices'
+import { redirect } from 'react-router-dom'
 
 export default function VisitorsCreate() {
   return (
-    <Create>
+    <Create redirect="/visitors">
       <SimpleForm>
         <TextInput source="first_name" label="First Name" validate={required()} />
         <TextInput source="last_name" label="Last Name" validate={required()} />
@@ -27,7 +27,6 @@ export default function VisitorsCreate() {
           validate={required()}
         />
         <TextInput source="notes" multiline fullWidth />
-        <BooleanInput source="is_active" label="Active" defaultValue={true} />
       </SimpleForm>
     </Create>
   )

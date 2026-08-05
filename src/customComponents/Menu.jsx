@@ -6,7 +6,7 @@ export default function CustomMenu() {
   return (
     <Menu>
       {/* empty space at the top */}
-      <Box sx={{ height: 0 }} />
+      <Box sx={{ height: 40 }} />
 
       <Menu.ResourceItem name="conferences" />
       <Menu.ResourceItem name="visitors" />

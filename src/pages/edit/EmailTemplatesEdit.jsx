@@ -1,12 +1,12 @@
 import React from 'react'
-import { Edit, SimpleForm, TextInput, required } from 'react-admin'
+
+import { Edit } from "react-admin";
+import EmailTemplateForm from "../reusableForms/EmailTemplateForm.jsx";
 
 export default function EmailTemplatesEdit() {
-  return (
-    <Edit mutationMode="pessimistic">
-      <SimpleForm>
-        <TextInput source="title" validate={required()} fullWidth />
-      </SimpleForm>
-    </Edit>
-  )
+    return (
+        <Edit>
+            <EmailTemplateForm />
+        </Edit>
+    );
 }

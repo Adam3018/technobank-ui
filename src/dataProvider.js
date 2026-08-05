@@ -1,3 +1,5 @@
+import React from 'react'
+
 const BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
 
 async function request(path, options = {}) {
@@ -21,6 +23,7 @@ async function request(path, options = {}) {
 
 const dataProvider = {
   getList: async (resource, params) => {
+
     const { page, perPage } = params.pagination;
     const { field, order } = params.sort;
 
@@ -33,10 +36,13 @@ const dataProvider = {
 
     const res = await fetch(`${BASE}/${resource}?${query}`);
 
+    if (!res.ok) {
+      throw new Error(await res.text());
+    }
+
     const data = await res.json();
 
-    const contentRange = res.headers.get("Content-Range");
-    const total = Number(contentRange.split("/")[1]);
+    const total = parseInt(res.headers.get("Content-Range")?.split("/")[1], 10) || data.length;
 
     return {
       data,

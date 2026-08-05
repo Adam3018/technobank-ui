@@ -1,16 +1,8 @@
-// NOT IN USE -- OBSCURE
-import React, { useState } from 'react';
+import React from 'react'
+
+import { TopToolbar, CreateButton, ExportButton, Button, useListContext, useNotify, useRefresh } from "react-admin";
+import { useState } from "react";
 import { 
-    Pagination, 
-    CreateButton, 
-    ExportButton, 
-    Button, 
-    useListContext,
-    useNotify,
-    useRefresh
-} from 'react-admin';
-import { 
-    Box, 
     Dialog, 
     DialogTitle, 
     DialogContent, 
@@ -18,9 +10,9 @@ import {
     Button as MuiButton, 
     Typography 
 } from '@mui/material';
-import UploadIcon from '@mui/icons-material/Upload';
+import UploadIcon from "@mui/icons-material/Upload";
 
-export const ListPaginationWithActions = (props) => {
+export const ListActions = ({ onImport }) => {
     const { resource } = useListContext();
     const notify = useNotify();
     const refresh = useRefresh();
@@ -66,28 +58,14 @@ export const ListPaginationWithActions = (props) => {
         }
     };
 
-    return (
-        <Box 
-            sx={{ 
-                display: 'flex', 
-                alignItems: 'center', 
-                justifyContent: 'space-between',
-                padding: '8px 16px',
-                width: '100%',
-                boxSizing: 'border-box'
-            }}
-        >
-            {/* Action Buttons */}
-            <Box sx={{ display: 'flex', gap: 1 }}>
-                {/* <CreateButton /> */}
-                {/* <ExportButton /> */}
-                <Button label="Import" onClick={() => setOpen(true)}>
-                    <UploadIcon />
-                </Button>
-            </Box>
 
-            {/* Default Pagination */}
-            <Pagination {...props} />
+    return (
+        <TopToolbar>
+            <CreateButton />
+            <ExportButton />
+            <Button label="Import" onClick={() => setOpen(true)}>
+                <UploadIcon />
+            </Button>
 
             {/* File Upload Modal Dialog */}
             <Dialog open={open} onClose={() => setOpen(false)} maxWidth="xs" fullWidth>
@@ -96,26 +74,26 @@ export const ListPaginationWithActions = (props) => {
                     <Typography variant="body2" sx={{ mb: 2 }}>
                         Upload a .csv or .xlsx file to import records directly into your list.
                     </Typography>
-                    <input 
-                        type="file" 
-                        accept=".csv, .xlsx, .xls" 
-                        onChange={handleFileChange} 
+                    <input
+                        type="file"
+                        accept=".csv, .xlsx, .xls"
+                        onChange={handleFileChange}
                     />
                 </DialogContent>
                 <DialogActions>
                     <MuiButton onClick={() => setOpen(false)} disabled={uploading}>
                         Cancel
                     </MuiButton>
-                    <MuiButton 
-                        onClick={handleUpload} 
-                        variant="contained" 
-                        color="primary" 
+                    <MuiButton
+                        onClick={handleUpload}
+                        variant="contained"
+                        color="primary"
                         disabled={!selectedFile || uploading}
                     >
                         {uploading ? 'Uploading...' : 'Upload & Import'}
                     </MuiButton>
                 </DialogActions>
             </Dialog>
-        </Box>
-    );
+        </TopToolbar>
+    )
 };

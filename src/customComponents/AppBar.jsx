@@ -1,6 +1,7 @@
 import React from 'react'
 import { AppBar as RaAppBar, TitlePortal } from 'react-admin'
 import Typography from '@mui/material/Typography'
+import { Box } from '@mui/material'
 
 export default function AppBar(props) {
   return (
@@ -15,6 +16,7 @@ export default function AppBar(props) {
       {/* Renders nothing visible, but keeps react-admin's internal title
           plumbing happy so pages don't throw looking for a portal target */}
       <TitlePortal sx={{ display: 'none' }} />
+
     </RaAppBar>
   )
 }

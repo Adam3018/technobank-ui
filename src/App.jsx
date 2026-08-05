@@ -1,14 +1,12 @@
 import React from 'react'
-import { Box } from '@mui/material'
 import { Admin, Resource } from 'react-admin'
 import EventIcon from '@mui/icons-material/Event'
 import PeopleIcon from '@mui/icons-material/People'
 import EmailIcon from '@mui/icons-material/Email'
-import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import dataProvider from './dataProvider'
 import Layout from './Layout'
 
-import {VisitorsList} from './pages/list/VisitorsList'
+import VisitorsList from './pages/list/VisitorsList'
 import VisitorsCreate from './pages/create/VisitorsCreate'
 import VisitorsEdit from './pages/edit/VisitorsEdit'
 
@@ -24,7 +22,7 @@ const theme = {
   palette: {
     primary: { main: '#2596be' },
     secondary: { main: '#2596be' },
-  },
+  }
 }
 
 export default function App() {

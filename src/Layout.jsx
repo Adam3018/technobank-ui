@@ -9,7 +9,6 @@ export default function Layout(props) {
             {...props}
             appBar={AppBar}
             menu={CustomMenu}
-            
         />
     )
 }
