@@ -6,6 +6,8 @@ import { Box } from '@mui/material'
 export default function AppBar(props) {
   return (
     <RaAppBar {...props}>
+      {/* Flex container holding the Logo + Title */}
+      {/* Title on the left */}
       <Typography
         variant="h6"
         color="inherit"
@@ -13,10 +15,26 @@ export default function AppBar(props) {
       >
         TechnoBank Hermes
       </Typography>
+
+      {/* Logo dead-centered */}
+      <Box
+        sx={{
+          position: 'absolute',
+          left: '14%',
+          transform: 'translateX(-50%)',
+          display: 'flex',
+          alignItems: 'left'
+        }}
+      >
+        <img
+          src="../public/logo-white-nobg.png"
+          alt="TechnoBank Logo"
+          style={{ height: 32, width: 'auto' }}
+        />
+      </Box>
       {/* Renders nothing visible, but keeps react-admin's internal title
           plumbing happy so pages don't throw looking for a portal target */}
       <TitlePortal sx={{ display: 'none' }} />
-
     </RaAppBar>
   )
 }

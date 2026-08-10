@@ -15,6 +15,7 @@ import {
     LinkButtons,
     QuoteButtons,
     DefaultEditorOptions,
+    ImageButtons,
 } from "ra-input-rich-text";
 import { Button, Box } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
@@ -45,6 +46,7 @@ export default function EmailTemplateForm() {
             <ListButtons />
             <LinkButtons />
             <QuoteButtons />
+            <ImageButtons />
             <Box display="flex" gap={0.5} mx={1} alignItems="center">
                 {placeholders.map((item) => (
                     <Button

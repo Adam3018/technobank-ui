@@ -9,9 +9,15 @@ import {
     DeleteWithConfirmButton,
 } from "react-admin";
 
+import { ListActionsEmail } from '../../customComponents/ListActionsEmail';
+
 export default function EmailTemplatesList() {
     return (
-        <List>
+        <List
+            sort={{ field: 'created_at', order: 'DESC' }}
+            actions={<ListActionsEmail onImport={() => setOpen(true)} />}
+            perPage={10} // Set the number of records per page to 10
+        >
             <Datagrid rowClick="edit">
                 <TextField source="id" />
                 <TextField source="name" sortable={false} />
