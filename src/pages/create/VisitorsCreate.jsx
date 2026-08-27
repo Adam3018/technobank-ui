@@ -1,32 +1,29 @@
 import React from 'react'
+
 import {
   Create,
   SimpleForm,
-  TextInput,
-  SelectInput,
-  required,
-  email,
 } from 'react-admin'
-import { clearanceChoices } from '../../utils/clearanceChoices'
-import { redirect } from 'react-router-dom'
+
+import VisitorAccreditationForm from '../../customComponents/VisitorAccreditationForm'
 
 export default function VisitorsCreate() {
   return (
     <Create redirect="/visitors">
-      <SimpleForm>
-        <TextInput source="first_name" label="First Name" validate={required()} />
-        <TextInput source="last_name" label="Last Name" validate={required()} />
-        <TextInput source="email" validate={[required(), email()]} />
-        <TextInput source="phone" label="Phone" />
-        <TextInput source="company" />
-        <TextInput source="position" />
-        <SelectInput
-          source="clearance_level"
-          label="Clearance Level"
-          choices={clearanceChoices}
-          validate={required()}
-        />
-        <TextInput source="notes" multiline fullWidth />
+      <SimpleForm
+        sx={{
+          '& .RaSimpleForm-main': {
+            width: '100%',
+          },
+
+          '& .RaToolbar-root': {
+            justifyContent: 'center',
+            padding: '16px 0 8px',
+            gap: 2,
+          },
+        }}
+      >
+        <VisitorAccreditationForm />
       </SimpleForm>
     </Create>
   )

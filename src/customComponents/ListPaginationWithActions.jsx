@@ -77,19 +77,14 @@ export const ListPaginationWithActions = (props) => {
                 boxSizing: 'border-box'
             }}
         >
-            {/* Action Buttons */}
             <Box sx={{ display: 'flex', gap: 1 }}>
-                {/* <CreateButton /> */}
-                {/* <ExportButton /> */}
                 <Button label="Import" onClick={() => setOpen(true)}>
                     <UploadIcon />
                 </Button>
             </Box>
 
-            {/* Default Pagination */}
             <Pagination {...props} />
 
-            {/* File Upload Modal Dialog */}
             <Dialog open={open} onClose={() => setOpen(false)} maxWidth="xs" fullWidth>
                 <DialogTitle>Import Data ({resource})</DialogTitle>
                 <DialogContent>

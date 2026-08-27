@@ -34,6 +34,10 @@ const dataProvider = {
       order,
     });
 
+    if (params.filter && Object.keys(params.filter).length > 0) {
+      query.set("filter", JSON.stringify(params.filter));
+    }
+
     const res = await fetch(`${BASE}/${resource}?${query}`);
 
     if (!res.ok) {

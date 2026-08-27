@@ -11,6 +11,7 @@ import {
     Typography 
 } from '@mui/material';
 import UploadIcon from "@mui/icons-material/Upload";
+import VisitorAccreditationPreview from './VisitorAccreditationPreview';
 
 export const ListActions = ({ onImport }) => {
     const { resource } = useListContext();
@@ -18,6 +19,7 @@ export const ListActions = ({ onImport }) => {
     const refresh = useRefresh();
 
     const [open, setOpen] = useState(false);
+    const [openPrint, setOpenPrint] = useState(false);
     const [selectedFile, setSelectedFile] = useState(null);
     const [uploading, setUploading] = useState(false);
 
@@ -47,7 +49,7 @@ export const ListActions = ({ onImport }) => {
             }
 
             const data = await response.json();
-            notify(`Successfully imported ${data.imported_count} records!`, { type: 'success' });
+            notify(`Imported ${data.imported_count} records and skipped ${data.skipped_count} records!`, { type: 'success' });
             setOpen(false);
             setSelectedFile(null);
             refresh(); // Refreshes the React Admin list automatically
@@ -62,6 +64,7 @@ export const ListActions = ({ onImport }) => {
     return (
         <TopToolbar>
             <CreateButton />
+            <VisitorAccreditationPreview manual />
             <ExportButton />
             <Button label="Import" onClick={() => setOpen(true)}>
                 <UploadIcon />

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+
+  <title>
+    TechnoBank - {{first_name}} {{last_name}}
+  </title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 40px;
+      font-family: Arial, sans-serif;
+      background: white;
+    }
+
+    .accreditation {
+      width: 500px;
+      border: 2px solid #222;
+      border-radius: 10px;
+      padding: 25px;
+      margin: 0 auto;
+    }
+
+    .header {
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 25px;
+    }
+
+    .name {
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .row {
+      margin: 10px 0;
+    }
+
+    .label {
+      font-weight: bold;
+    }
+
+    @media print {
+      body {
+        padding: 0;
+      }
+
+      .accreditation {
+        margin: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="accreditation">
+
+    <div class="header">
+      TechnoBank
+    </div>
+
+    <div class="name">
+      {{first_name}} {{last_name}}
+    </div>
+
+    <div class="row">
+      <span class="label">Company:</span>
+      {{company}}
+    </div>
+
+    <div class="row">
+      <span class="label">Position:</span>
+      {{position}}
+    </div>
+
+    <div class="row">
+      <span class="label">Email:</span>
+      {{email}}
+    </div>
+
+    <div class="row">
+      <span class="label">Clearance:</span>
+      {{clearance_level}}
+    </div>
+
+  </div>
+
+</body>
+</html>

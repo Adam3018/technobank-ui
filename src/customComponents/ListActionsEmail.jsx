@@ -131,7 +131,7 @@ export const ListActionsEmail = () => {
                 <DialogContent dividers>
                     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, pt: 1 }}>
                         
-                        {/* 1. SINGLE SELECT: Email Template */}
+                        {/* SINGLE SELECT: Email Template */}
                         <FormControl fullWidth disabled={loadingTemplates || isSubmitting}>
                             <InputLabel id="template-select-label">Select Email Template</InputLabel>
                             <Select
@@ -154,7 +154,7 @@ export const ListActionsEmail = () => {
                             </Select>
                         </FormControl>
 
-                        {/* 2. MULTI SELECT WITH CHECKBOXES: Visitors */}
+                        {/* MULTI SELECT WITH CHECKBOXES: Visitors */}
                         <Box>
                             {/* Select All Toggle Bar */}
                             <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 1 }}>
