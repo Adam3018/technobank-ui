@@ -1,40 +1,30 @@
 import React from 'react'
-import { AppBar as RaAppBar, TitlePortal } from 'react-admin'
-import Typography from '@mui/material/Typography'
-import { Box } from '@mui/material'
+import { AppBar as RaAppBar } from 'react-admin'
+import { Box, Typography } from '@mui/material'
 
 export default function AppBar(props) {
   return (
-    <RaAppBar {...props}>
-      {/* Flex container holding the Logo + Title */}
-      {/* Title on the left */}
-      <Typography
-        variant="h6"
-        color="inherit"
-        sx={{ flex: 1, fontWeight: 600 }}
-      >
-        TechnoBank Hermes
-      </Typography>
-
-      {/* Logo dead-centered */}
-      <Box
-        sx={{
-          position: 'absolute',
-          left: '14%',
-          transform: 'translateX(-50%)',
-          display: 'flex',
-          alignItems: 'left'
-        }}
-      >
+    <RaAppBar
+      {...props}
+      sx={{
+        bgcolor: '#12233B',
+        color: '#F5F6F4',
+        boxShadow: 'none',
+        borderBottom: '1px solid rgba(255,255,255,0.08)',
+        '& .RaAppBar-menuButton': { color: '#F5F6F4' },
+        '& .MuiIconButton-root': { color: '#F5F6F4' },
+      }}
+    >
+      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, flex: 1 }}>
         <img
-          src="../public/logo-white-nobg.png"
+          src="/logo-white-nobg.png"
           alt="TechnoBank Logo"
-          style={{ height: 32, width: 'auto' }}
+          style={{ height: 28, width: 'auto' }}
         />
+        <Typography variant="h6" sx={{ fontWeight: 600, fontSize: '1.05rem' }}>
+          TechnoBank Hermes
+        </Typography>
       </Box>
-      {/* Renders nothing visible, but keeps react-admin's internal title
-          plumbing happy so pages don't throw looking for a portal target */}
-      <TitlePortal sx={{ display: 'none' }} />
     </RaAppBar>
   )
 }

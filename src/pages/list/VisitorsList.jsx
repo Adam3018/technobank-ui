@@ -5,17 +5,26 @@ import {
   Datagrid,
   TextField,
   EmailField,
+  FunctionField,
   EditButton,
   DeleteWithConfirmButton,
   TextInput,
-  Filter,
 } from 'react-admin'
+import { Chip } from '@mui/material'
 
 import { ListActions } from '../../customComponents/ListActions'
 import { clearanceChoices } from '../../utils/clearanceChoices'
 import VisitorAccreditationPreview from '../../customComponents/VisitorAccreditationPreview'
 
 import SearchIcon from '@mui/icons-material/Search'
+
+const clearanceStyles = {
+  visitor: { color: '#5B6B7F', bg: '#EEF1F4' },
+  staff: { color: '#2F6B7A', bg: '#E4F1F4' },
+  vip: { color: '#B0791B', bg: '#FBF0DD' },
+  admin: { color: '#B3261E', bg: '#FBEAE9' },
+  presenter: { color: '#6B3FA0', bg: '#F1E9F8' },
+}
 
 const visitorFilters = [
   <TextInput
@@ -64,6 +73,7 @@ export default function VisitorsList() {
       actions={<ListActions />}
       filters={visitorFilters}
       perPage={10}
+      empty={false}
     >
       <Datagrid rowClick="edit">
         <TextField source="id" />
@@ -89,10 +99,26 @@ export default function VisitorsList() {
 
         <TextField source="position" />
 
-        <TextField
+        <FunctionField
           source="clearance_level"
           label="Clearance"
-          choices={clearanceChoices}
+          sortable={false}
+          render={(record) => {
+            const choice = clearanceChoices.find((c) => c.id === record.clearance_level)
+            const style = clearanceStyles[record.clearance_level] || clearanceStyles.visitor
+            return (
+              <Chip
+                label={choice ? choice.name : record.clearance_level}
+                size="small"
+                sx={{
+                  bgcolor: style.bg,
+                  color: style.color,
+                  fontWeight: 600,
+                  fontSize: '0.75rem',
+                }}
+              />
+            )
+          }}
         />
 
         <TextField

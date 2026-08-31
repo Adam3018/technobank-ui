@@ -37,7 +37,7 @@ export default function VisitorAccreditationForm() {
         align="center"
         fontWeight="bold"
       >
-        TechnoBanka
+        TechnoBank
       </Typography>
 
       <Divider sx={{ my: 3 }} />
