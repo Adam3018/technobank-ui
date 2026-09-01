@@ -38,6 +38,8 @@ import DeleteIcon from '@mui/icons-material/Delete'
 
 import DateTimePickerInput from '../../customComponents/DateTimePickerInput'
 
+import FloorPlanEditor from '../../customComponents/FloorPlanEditor'
+
 const statusChoices = [
   { id: 'draft', name: 'Draft' },
   { id: 'scheduled', name: 'Scheduled' },
@@ -605,6 +607,15 @@ export default function ConferencesEdit() {
 
         {/* NEW AGENDA TABLE */}
         <AgendaEditor />
+
+        <Divider
+          sx={{
+            width: '100%',
+            my: 4,
+          }}
+        />
+
+        <FloorPlanEditor />
 
         <Divider
           sx={{
