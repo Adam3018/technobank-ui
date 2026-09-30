@@ -1,15 +1,31 @@
 # TechnoBank UI
 
-Minimal React + Vite frontend that consumes the TechnoBank API CRUD endpoints.
+React + Vite frontend for TechnoBank.
 
-Run locally:
+## Installation
+
+**Windows:**
+```bash
+setup.bat
+```
+
+**Linux/macOS:**
+```bash
+chmod +x setup.sh
+./setup.sh
+```
+
+## Running
 
 ```bash
-cd technobank-ui
-npm install
 npm run dev
 ```
 
-Environment:
-- By default the app expects the API at `http://localhost:8000`.
-- To change, set `VITE_API_BASE_URL` before running Vite.
+## Configuration
+
+API URL: defaults to `http://localhost:8000`
+
+To change, set before running:
+```bash
+VITE_API_BASE_URL=http://your-api-url npm run dev
+```
