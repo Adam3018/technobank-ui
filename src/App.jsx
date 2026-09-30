@@ -3,6 +3,7 @@ import { Admin, Resource } from 'react-admin'
 import EventIcon from '@mui/icons-material/Event'
 import PeopleIcon from '@mui/icons-material/People'
 import EmailIcon from '@mui/icons-material/Email'
+import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer'
 import dataProvider from './dataProvider'
 import Layout from './Layout'
 
@@ -17,6 +18,8 @@ import ConferencesEdit from './pages/edit/ConferencesEdit'
 import EmailTemplatesList from './pages/list/EmailTemplatesList'
 import EmailTemplatesCreate from './pages/create/EmailTemplatesCreate'
 import EmailTemplatesEdit from './pages/edit/EmailTemplatesEdit'
+
+import AskPresenterWizard from './pages/AskPresenterWizard'
 
 const theme = {
   palette: {
@@ -54,6 +57,12 @@ export default function App() {
         list={EmailTemplatesList}
         create={EmailTemplatesCreate}
         edit={EmailTemplatesEdit}
+      />
+      <Resource
+        name="ask-presenter"
+        icon={QuestionAnswerIcon}
+        options={{ label: 'Ask Presenter' }}
+        list={AskPresenterWizard}
       />
     </Admin>
   )
